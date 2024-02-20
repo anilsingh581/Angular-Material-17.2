@@ -1,0 +1,35 @@
+<div style="text-align: center;">
+  <mat-slide-toggle>Toggle me!</mat-slide-toggle>
+</div>
+<br>
+<div>
+  <section class="example-section">
+    <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+    <mat-checkbox class="example-margin" [disabled]="true">Disabled</mat-checkbox>
+  </section>
+  
+  <section class="example-section">
+    <span class="example-list-section">
+      <mat-checkbox class="example-margin"
+                    [checked]="allComplete"
+                    [color]="task.color"
+                    [indeterminate]="someComplete()"
+                    (change)="setAll($event.checked)">
+        {{task.name}}
+      </mat-checkbox>
+    </span>
+    <span class="example-list-section">
+      <ul>
+        @for (subtask of task.subtasks; track subtask) {
+          <li>
+            <mat-checkbox [(ngModel)]="subtask.completed"
+                          [color]="subtask.color"
+                          (ngModelChange)="updateAllComplete()">
+              {{subtask.name}}
+            </mat-checkbox>
+          </li>
+        }
+      </ul>
+    </span>
+  </section>
+</div>
